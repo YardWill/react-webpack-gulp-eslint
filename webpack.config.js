@@ -7,8 +7,7 @@ module.exports = {
     modulesDirectories: ["bower_components"]
   },
   entry: {
-    // demo: "./src/entry/demo.js",
-    entry: "./src/js/app/index.jsx",
+    index: "./src/js/app/index.jsx",
   },
   output: {
     path: path.join(__dirname, '/bundle/js'),
