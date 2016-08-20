@@ -31,7 +31,7 @@ gulp.task('lint', () => {
 });
 
 gulp.task('webpack', function (callback) {
-    return gulp.src('src/js/app/index.jsx')
+    return gulp.src('src/js/app/**.jsx')
         .pipe(webpack(require('./webpack.config.js')))
         .pipe(gulp.dest('dist/js'));
 });

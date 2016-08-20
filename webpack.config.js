@@ -4,13 +4,14 @@ var path = require('path');
 
 module.exports = {
   resolve: {
-    modulesDirectories: ["bower_components"]
+    modulesDirectories: ["node_modules"]
   },
   entry: {
     index: "./src/js/app/index.jsx",
+    common: ['react','react-dom'],
   },
   output: {
-    path: path.join(__dirname, '/bundle/js'),
+    path: path.join(__dirname, '/dist/js'),
     filename: '[name].js',
   },
   module: {
@@ -23,13 +24,14 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin('common',  'common.js'),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify("production") }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   }
+    // })
   ]
 }
