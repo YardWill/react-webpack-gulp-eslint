@@ -3,9 +3,6 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-  resolve: {
-    modulesDirectories: ["node_modules"]
-  },
   entry: {
     index: "./src/js/app/index.jsx",
     common: ['react','react-dom'],
@@ -24,14 +21,16 @@ module.exports = {
     ]
   },
   plugins: [
+    //提取公共文件
     new webpack.optimize.CommonsChunkPlugin('common',  'common.js'),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify("production") }
     }),
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   }
-    // })
+    // 如需压缩js文件，将以下注释去掉
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    })
   ]
 }
