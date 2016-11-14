@@ -27,10 +27,10 @@ module.exports = {
       'process.env': { NODE_ENV: JSON.stringify("production") }
     }),
     // 如需压缩js文件，将以下注释去掉
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    })
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false
+    //   }
+    // })
   ]
 }

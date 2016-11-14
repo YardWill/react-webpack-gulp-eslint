@@ -11,6 +11,8 @@ var webpack = require('gulp-webpack');
 
 var eslint = require('gulp-eslint');
 
+var livereload = require('gulp-livereload');
+
 gulp.task('lint', () => {
     // ESLint ignores files with "node_modules" paths. 
     // So, it's best to have gulp ignore the directory as well. 
@@ -59,6 +61,13 @@ gulp.task('autojs', function () {
     gulp.watch('src/**/**.jsx', ['webpack', 'lint'])
 })
 
+gulp.task('watch', function () {
+  // Create LiveReload server
+  livereload.listen();
+  // Watch any files in dist/, reload on change
+  gulp.watch(['dist/**']).on('change', livereload.changed);
+});
+
 // 使用 gulp.task('default') 定义默认任务
 // 在命令行使用 gulp 启动 less 任务和 auto 任务
-gulp.task('default', ['less', 'autoless', 'webpack', 'autojs', 'lint'])
+gulp.task('default', ['less', 'autoless', 'webpack', 'autojs', 'lint', 'watch'])
